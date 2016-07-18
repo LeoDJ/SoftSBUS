@@ -1,3 +1,12 @@
+WORK IN PROGRESS
+================
+
+I'm currently trying to integrate the SoftSerial library into this library to improve it (hook up SBUS signal to any pin, no inverter needed)
+
+
+
+
+
 Arduino library for Futaba SBUS
 ===============================
 

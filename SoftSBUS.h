@@ -1,5 +1,5 @@
-#ifndef SBUS_h
-#define SBUS_h
+#ifndef SoftSBUS_h
+#define SoftSBUS_h
 
 #include "Arduino.h"
 
@@ -9,9 +9,9 @@
 #define SBUS_ENDBYTE           0x00
 
 
-class SBUS {
+class SoftSBUS {
 	public:
-		SBUS(HardwareSerial & serial) : _serial (serial) {}
+		SoftSBUS(HardwareSerial & serial) : _serial (serial) {}
 		void begin();
 		void begin(bool useTimer);
 		void process();

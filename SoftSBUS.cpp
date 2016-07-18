@@ -1,11 +1,11 @@
-#include "SBUS.h"
+#include "SoftSBUS.h"
 #include <Arduino.h>
 
-void SBUS::begin() {
-	SBUS::begin(true);
+void SoftSBUS::begin() {
+	SoftSBUS::begin(true);
 }
 
-void SBUS::begin(bool useTimer) {
+void SoftSBUS::begin(bool useTimer) {
 	if (useTimer) {
 		noInterrupts();
 		TCCR2A  = 0;
@@ -30,7 +30,7 @@ void SBUS::begin(bool useTimer) {
 	_serial.begin(100000, SERIAL_8E2);
 }
 
-void SBUS::process() {
+void SoftSBUS::process() {
 	static byte buffer[25];
 	static byte buffer_index = 0;
 
@@ -88,7 +88,7 @@ void SBUS::process() {
 	}
 }
 
-int SBUS::getChannel(int channel) {
+int SoftSBUS::getChannel(int channel) {
 	if (channel < 1 or channel > 18) {
 		return 0;
 	} else {
@@ -96,7 +96,7 @@ int SBUS::getChannel(int channel) {
 	}
 }
 
-int SBUS::getNormalizedChannel(int channel) {
+int SoftSBUS::getNormalizedChannel(int channel) {
 	if (channel < 1 or channel > 18) {
 		return 0;
 	} else {
@@ -104,26 +104,26 @@ int SBUS::getNormalizedChannel(int channel) {
 	}
 }
 
-int SBUS::getFailsafeStatus() {
+int SoftSBUS::getFailsafeStatus() {
 	return _failsafe;
 }
 
-int SBUS::getFrameLoss() {
+int SoftSBUS::getFrameLoss() {
 	return (int) ((_lostFrames + _decoderErrorFrames) * 100 / (_goodFrames + _lostFrames + _decoderErrorFrames));
 }
 
-long SBUS::getGoodFrames() {
+long SoftSBUS::getGoodFrames() {
 	return _goodFrames;
 }
 
-long SBUS::getLostFrames() {
+long SoftSBUS::getLostFrames() {
 	return _lostFrames;
 }
 
-long SBUS::getDecoderErrorFrames() {
+long SoftSBUS::getDecoderErrorFrames() {
 	return _decoderErrorFrames;
 }
 
-long long SBUS::getLastTime() {
+long long SoftSBUS::getLastTime() {
 	return _lastGoodFrame;
 }
